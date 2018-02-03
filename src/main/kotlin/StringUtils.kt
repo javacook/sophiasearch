@@ -1,7 +1,7 @@
 package de.kotlincook.sophiasearch
 
-fun String.subString(from: Int) = if (from <= length) substring(from) else ""
+fun String.subString(from: Int) = "" // TODO: Please fill in here your code...
 
-fun String.subString(from: Int, to: Int) = if (from <= to && to <= length) substring(from, to) else ""
+fun String.subString(from: Int, to: Int) = "" // TODO: Please fill in here your code...
 
 fun String.normalize() = trim().toLowerCase()

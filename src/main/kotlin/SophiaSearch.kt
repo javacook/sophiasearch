@@ -13,9 +13,7 @@ class NormelizedString(val str: String) : Comparable<NormelizedString> {
 class SophiSearch(val navSet: Collection<NormelizedString>) : Completable {
 
     override fun complete(input: String): Collection<String> {
-
-        // TODO: Please fill in here your code
-
+        // TODO: Please fill in here your code...
         return navSet.map { it.str }
     }
 }

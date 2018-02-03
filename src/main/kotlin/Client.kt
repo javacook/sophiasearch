@@ -45,7 +45,7 @@ object TestCompleter : Completable {
 
 
 fun main(args: Array<String>) {
-    val lines = FileUtils.loadResourceLines("/streets.txt").map { NormedString(it) }.toSortedSet()
+    val lines = FileUtils.loadResourceLines("/somestreets.txt").map { NormedString(it) }.toSortedSet()
     App.completer = SophiSearch(lines)
     Application.launch(App::class.java, *args)
 }

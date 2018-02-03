@@ -2,33 +2,33 @@ package de.kotlincook.sophiasearch
 
 import kotlin.system.measureTimeMillis
 
-class NormedString(val str: String) : Comparable<NormedString> {
-    val strNormed = str.norm()
-    override fun compareTo(other: NormedString): Int {
-        return strNormed.compareTo(other.strNormed)
+class NormalizedString(val str: String) : Comparable<NormalizedString> {
+    val value = str.normalized()
+    override fun compareTo(other: NormalizedString): Int {
+        return value.compareTo(other.value)
     }
 }
 
-class WrappedNormedString(val normedString: NormedString,
+class WrappedNormedString(val normalizedString: NormalizedString,
                           val crumbIndexResult: CrumbIndexResult) : Comparable<WrappedNormedString>  {
 
     override fun compareTo(other: WrappedNormedString): Int {
         val firstLevel = crumbIndexResult.compareTo(other.crumbIndexResult)
-        return if (firstLevel != 0) firstLevel else normedString.strNormed.compareTo(other.normedString.strNormed)
+        return if (firstLevel != 0) firstLevel else normalizedString.value.compareTo(other.normalizedString.value)
     }
 }
 
-class SophiSearch(val navSet: Collection<NormedString>) : Completable {
+class SophiSearch(val navSet: Collection<NormalizedString>) : Completable {
 
     override fun complete(input: String): Collection<String> {
-            val normed = input.norm()
+            val normed = input.normalized()
             var result: List<String> = ArrayList()
             println(measureTimeMillis {
                 result = navSet
-                    .map { WrappedNormedString(it, it.strNormed.crumbIndexOf(normed)) }
+                    .map { WrappedNormedString(it, it.value.crumbIndexOf(normed)) }
                     .filter { it.crumbIndexResult is CrumbIndexResult.Dist }
                     .sortedBy { it }
-                    .map { it.normedString.str }
+                    .map { it.normalizedString.str }
                     .toList()
             })
             return result

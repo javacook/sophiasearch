@@ -46,7 +46,7 @@ object TestCompleter : Completable {
 
 fun main(args: Array<String>) {
     val fileName = "/streets.txt"
-    val ngrams = FileUtils.loadResourceLines(fileName).map { NormedString(it) }.toSortedSet()
+    val ngrams = FileUtils.loadResourceLines(fileName).map { NormalizedString(it) }.toSortedSet()
     App.completer = SophiSearch(ngrams)
     Application.launch(App::class.java, *args)
 }

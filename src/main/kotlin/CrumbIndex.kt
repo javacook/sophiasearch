@@ -15,7 +15,7 @@ sealed class CrumbIndexResult : Comparable<CrumbIndexResult> {
 /**
  * This measure sums the gaps between the matching letters of <code>crumbs</code> which are spread over "this".
  * The distance from the beginning to first containing letter should be included, the distance until the end not.
- * In this example 2 + 2 + 3 + 4
+ * In this example 2 + 2 + 3 + 4 = 11.
  * <pre>
  * This is an example  = this
  *   i  i   n    m     = crumbs

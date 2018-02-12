@@ -51,7 +51,7 @@ object SopiaSearchMock2: Completable {
 
 
 fun main(args: Array<String>) {
-    val lines = FileUtils.loadResourceLines("/somestreets.txt").map { NormalizedString(it) }.toList()
-    App.completer = SophiSearch(lines)
+    val lines = FileUtils.loadResourceLines("/somestreets.txt").toList()
+    App.completer = SophiaSearch(lines)
     Application.launch(App::class.java, *args)
 }

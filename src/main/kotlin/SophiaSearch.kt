@@ -3,7 +3,7 @@ package de.kotlincook.sophiasearch
 /**
  * @param allElements set of all elements in which is being searched
  */
-class SophiSearch<T>(val allElements: Collection<Comparable<T>>) : Completable {
+class SophiaSearch(val allElements: Collection<String>) : Completable {
 
     /**
      * Returns the search result of <code>input</code>, e.g. a collection of

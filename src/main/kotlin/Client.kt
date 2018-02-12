@@ -37,16 +37,9 @@ class App(): Application() {
 }
 
 
-object TestCompleter : Completable {
-    override fun complete(input: String): Collection<String> {
-        return listOf("One $input", "Two ${input}s", "Three ${input}s")
-    }
-}
-
-
 fun main(args: Array<String>) {
     val fileName = "/streets.txt"
-    val ngrams = FileUtils.loadResourceLines(fileName).map { NormalizedString(it) }.toSortedSet()
-    App.completer = SophiSearch(ngrams)
+    val streets = FileUtils.loadResourceLines(fileName).map { NormalizedString(it) }.toSortedSet()
+    App.completer = SophiSearch(streets)
     Application.launch(App::class.java, *args)
 }

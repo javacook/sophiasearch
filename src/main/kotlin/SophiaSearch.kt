@@ -1,16 +1,9 @@
 package de.kotlincook.sophiasearch
 
 /**
- * A wrapper around a string in order to compare its normalized form
+ * @param allElements set of all elements in which is being searched
  */
-class NormalizedString(val str: String) : Comparable<NormalizedString> {
-    val value = str.normalize()
-    override fun compareTo(other: NormalizedString): Int {
-        return value.compareTo(other.value)
-    }
-}
-
-class SophiSearch(val navSet: Collection<NormalizedString>) : Completable {
+class SophiSearch<T>(val allElements: Collection<Comparable<T>>) : Completable {
 
     /**
      * Returns the search result of <code>input</code>, e.g. a collection of
@@ -21,6 +14,6 @@ class SophiSearch(val navSet: Collection<NormalizedString>) : Completable {
      */
     override fun complete(input: String): Collection<String> {
         // TODO: Please fill in here your code...
-        return navSet.map { it.str }
+        return allElements.map { it.toString() }
     }
 }

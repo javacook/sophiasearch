@@ -37,15 +37,21 @@ class App(): Application() {
 }
 
 
-object TestCompleter : Completable {
+object SopiaSearchMock1 : Completable {
     override fun complete(input: String): Collection<String> {
         return listOf("One $input", "Two ${input}s", "Three ${input}s")
     }
 }
 
+object SopiaSearchMock2: Completable {
+    override fun complete(input: String): Collection<String> {
+        return input.mapIndexed { i, c -> "$i: $c"}
+    }
+}
+
 
 fun main(args: Array<String>) {
-    val lines = FileUtils.loadResourceLines("/somestreets.txt").map { NormalizedString(it) }.toSortedSet()
+    val lines = FileUtils.loadResourceLines("/somestreets.txt").map { NormalizedString(it) }.toList()
     App.completer = SophiSearch(lines)
     Application.launch(App::class.java, *args)
 }

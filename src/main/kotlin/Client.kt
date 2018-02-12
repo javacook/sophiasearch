@@ -38,8 +38,7 @@ class App(): Application() {
 
 
 fun main(args: Array<String>) {
-    val fileName = "/streets.txt"
-    val streets = FileUtils.loadResourceLines(fileName).map { NormalizedString(it) }.toSortedSet()
-    App.completer = SophiSearch(streets)
+    val streets = FileUtils.loadResourceLines("/streets.txt").toList()
+    App.completer = SophiaSearch(streets)
     Application.launch(App::class.java, *args)
 }

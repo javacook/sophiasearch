@@ -3,9 +3,7 @@ package de.kotlincook.sophiasearch
 import kotlin.system.measureTimeMillis
 
 
-class SophiaSearch(arg: Collection<String>) : Completable {
-
-    val elements = arg.map { it.normalized() }
+class SophiSearchSimple(val elements: Collection<String>) : Completable {
 
     /**
      * Returns the search result of <code>input</code>, e.g. a collection of
@@ -15,11 +13,10 @@ class SophiaSearch(arg: Collection<String>) : Completable {
      * @see CrumbIndexResult
      */
     override fun complete(input: String): Collection<String> {
-            val normedInput = input.normalized()
             var result: List<String> = ArrayList()
             println(measureTimeMillis {
                 result = elements
-                    .map { Pair(it, it.crumbIndexOf(normedInput)) }
+                    .map { Pair(it, it.normalized().crumbIndexOf(input.normalized())) }
                     .filter { it.second is CrumbIndexResult.Dist }
                     .sortedBy { it.second }
                     .map { it.first }

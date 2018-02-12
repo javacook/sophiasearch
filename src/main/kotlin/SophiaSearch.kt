@@ -9,9 +9,12 @@ class NormalizedString(override val original: String) : Wrapper<String, String> 
     }
 }
 
-class WrappedNormedString(override val original: String, override val wrapped: CrumbIndexResult) :
-        Wrapper<String, CrumbIndexResult>  {
-    override fun compareTo(other: Wrapper<String, CrumbIndexResult>): Int {
+class WrappedNormedString(override val original: NormalizedString, input: String) :
+        Wrapper<NormalizedString, CrumbIndexResult>  {
+
+    override val wrapped = original.wrapped.crumbIndexOf(input)
+
+    override fun compareTo(other: Wrapper<NormalizedString, CrumbIndexResult>): Int {
         val firstLevel = wrapped.compareTo(other.wrapped)
         return if (firstLevel != 0) firstLevel else original.compareTo(other.original)
     }
@@ -36,10 +39,10 @@ class SophiSearch<T>(val elements: Collection<Wrapper<String, T>>) : Completable
             var result: List<String> = ArrayList()
             println(measureTimeMillis {
                 result = elements
-                    .map { WrappedNormedString(it.original, it.wrapped.toString().crumbIndexOf(normed)) }
+                    .map { WrappedNormedString(it as NormalizedString, normed) }
                     .filter { it.wrapped is CrumbIndexResult.Dist }
                     .sortedBy { it }
-                    .map { it.original }
+                    .map { it.original.original }
                     .toList()
             })
             return result

@@ -28,7 +28,7 @@ class App(): Application() {
         }
 
         edit.textProperty().addListener {
-            _ -> completionsList.items.setAll(completer.complete(edit.text))
+            _, _, input -> completionsList.items.setAll(completer.complete(input))
         }
 
         stage.scene = Scene(vBox)

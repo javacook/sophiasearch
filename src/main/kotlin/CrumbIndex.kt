@@ -7,7 +7,7 @@ sealed class CrumbIndexResult : Comparable<CrumbIndexResult> {
     data class Dist(val value: Int) : CrumbIndexResult()
 
     override operator fun compareTo(other: CrumbIndexResult): Int {
-        // TODO: Please fill in here your code...
+        // TODO: Please fill in your code here...
         return 0
     }
 }
@@ -24,6 +24,6 @@ sealed class CrumbIndexResult : Comparable<CrumbIndexResult> {
  * </pre>
  */
 fun String.crumbIndexOf(crumbs: String): CrumbIndexResult {
-    // TODO: Please fill in here your code...
+    // TODO: Please fill in your code here...
     return None
 }

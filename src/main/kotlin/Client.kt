@@ -28,7 +28,7 @@ class App(): Application() {
         }
 
         edit.textProperty().addListener {
-            _ -> completionsList.items.setAll(completer.complete(edit.text))
+            _, _, input -> completionsList.items.setAll(completer.complete(input))
         }
 
         stage.scene = Scene(vBox)
@@ -38,7 +38,7 @@ class App(): Application() {
 
 
 fun main(args: Array<String>) {
-    val streets = FileUtils.loadResourceLines("/streets.txt").toList()
-    App.completer = SophiaSearch(streets)
+    val lines = FileUtils.loadResourceLines("/streets.txt").toList()
+    App.completer = SophiaSearch(lines)
     Application.launch(App::class.java, *args)
 }

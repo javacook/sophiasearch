@@ -23,8 +23,8 @@ class App(): Application() {
         val edit = TextField()
         val completionsList = ListView<String>()
         val vBox = VBox(edit, completionsList).apply {
-            spacing = 15.0
-            padding = Insets(15.0)
+            spacing = 10.0
+            padding = Insets(10.0)
         }
 
         edit.textProperty().addListener {

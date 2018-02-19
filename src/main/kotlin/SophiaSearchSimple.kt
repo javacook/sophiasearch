@@ -16,7 +16,7 @@ class SophiSearchSimple(val elements: Collection<String>) : Completable {
             var result: List<String> = ArrayList()
             println(measureTimeMillis {
                 result = elements
-                    .map { Pair(it, it.normalized().crumbIndexOf(input.normalized())) }
+                    .map { Pair(it, it.normalized().crumbIndexOfSimple(input.normalized())) }
                     .filter { it.second is CrumbIndexResult.Dist }
                     .sortedBy { it.second }
                     .map { it.first }

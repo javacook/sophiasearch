@@ -43,7 +43,6 @@ sealed class CrumbIndexResult : Comparable<CrumbIndexResult> {
  * </pre>
  */
 fun String.crumbIndexOf(crumbs: String): CrumbIndexResult {
-
     tailrec fun crumbIndexOf(word: String, crumbs: String, akku: CrumbIndexResult): CrumbIndexResult {
         if (word == "" && crumbs != "") return None;
         if (word == "" || crumbs == "") return akku;
@@ -52,4 +51,11 @@ fun String.crumbIndexOf(crumbs: String): CrumbIndexResult {
         return crumbIndexOf(word.subString(idx + 1), crumbs.subString(1), Dist(idx) + akku);
     }
     return crumbIndexOf(this, crumbs, Dist(0))
+}
+
+
+fun String.crumbIndexOfSimple(crumbs: String): CrumbIndexResult {
+    if (crumbs == "") return Dist(0)
+    val idx = indexOf(crumbs[0])
+    return if (idx < 0) None else Dist(idx) + subString(idx+1).crumbIndexOfSimple(crumbs.subString(1))
 }

@@ -24,4 +24,11 @@ class CrumbIndexKtTest {
         val actual = "This is an example".crumbIndexOf("none")
         assertEquals(None, actual)
     }
+
+    @Test
+    fun caseLonger() {
+        val actual = "This is an example".crumbIndexOf("This is an example_")
+        assertEquals(None, actual)
+    }
+
 }

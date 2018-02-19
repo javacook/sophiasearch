@@ -14,6 +14,6 @@ class SophiaSearch(val allElements: Collection<String>) : Completable {
      */
     override fun complete(input: String): Collection<String> {
         // TODO: Please fill in your code here...
-        return allElements.map { it.toString() }
+        return allElements.map { it }
     }
 }

@@ -18,10 +18,6 @@ object FileUtils {
         return loadResource(resourceName, charSet).splitToSequence(System.lineSeparator())
     }
 
-    fun loadFile(fileName: String, charSet: Charset = Charsets.UTF_8): String {
-        return File(fileName).bufferedReader(charSet).use { it.readText() }
-    }
-
     fun loadFileLines(fileName: String, charSet: Charset = Charsets.UTF_8): Sequence<String> {
         return File(fileName).bufferedReader(charSet).lineSequence()
     }

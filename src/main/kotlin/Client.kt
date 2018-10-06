@@ -26,11 +26,9 @@ class App(): Application() {
             spacing = 10.0
             padding = Insets(10.0)
         }
-
         edit.textProperty().addListener {
             _, _, input -> completionsList.items.setAll(completer.complete(input))
         }
-
         stage.scene = Scene(vBox)
         stage.show()
     }
@@ -41,4 +39,5 @@ fun main(args: Array<String>) {
     val lines = FileUtils.loadResourceLines("/streets.txt").toList()
     App.completer = SophiaSearch(lines)
     Application.launch(App::class.java, *args)
+
 }

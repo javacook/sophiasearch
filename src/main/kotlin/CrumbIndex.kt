@@ -13,7 +13,6 @@ sealed class CrumbIndexResult : Comparable<CrumbIndexResult> {
             else -> {
                 val thisValue = (this as Dist).value
                 val otherValue = (other as Dist).value
-                val to = "$thisValue, $otherValue"
                 return thisValue - otherValue
             }
         }
